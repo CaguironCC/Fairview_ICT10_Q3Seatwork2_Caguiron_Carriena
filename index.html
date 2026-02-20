@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Intramurals Team Checker</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #9ec3ff 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #3498db;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input {
+            margin-right: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffe8c7;
+            display: none;
+        }
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .status {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .eligible {
+            color: #27ae60;
+        }
+        .not-eligible {
+            color: #e74c3c;
+        }
+        .message {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .instruction {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><b>Intramurals Team Checker</b></h1>
+
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+        
+        <div class="form-group">
+            <label for="grade">Grade Level:</label>
+            <select id="grade" name="grade">
+                <option value="" selected disabled>Select Grade</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+                <option value="9">Grade 9</option>
+                <option value="10">Grade 10</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="sec">Section:</label>
+            <select id="sec" name="sec">
+                <option value="" selected disabled>Select Section</option>
+                <option value="Emerald">Emerald</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Sapphire">Sapphire</option>
+                <option value="Topaz">Topaz</option>
+            </select>
+        </div>        
+        <div class="form-group">
+            <label>Are you done with the online registration?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="registration-yes" name="registration" value="yes">
+                    <label for="registration-yes">Yes</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="registration-no" name="registration" value="no">
+                    <label for="registration-no">No</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Do you have medical clearance from the clinic?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="medical-yes" name="medical" value="yes">
+                    <label for="medical-yes">Yes</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="medical-no" name="medical" value="no">
+                    <label for="medical-no">No</label>
+                </div>
+            </div>
+        </div>
+        
+        <button id="check-btn">Check Eligibility</button>
+        
+        <div class="result" id="result">
+            <div class="status" id="status-text">Status: -</div>
+            <div class="team-name" id="team-text">Team: -</div>
+            <div class="message" id="message-text">-</div>
+        </div>
+        
+        <p class="instruction">Complete the form to check your eligibility for Intramurals</p>
+    </div>
+
+    <py-config>
+        [[fetch]]
+        files = ["main.py"]
+    </py-config>
+    <script type="py" src="main.py"></script>
+</body>
+</html>
